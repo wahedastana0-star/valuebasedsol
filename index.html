@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="google-site-verification" content="gRMifsWXrTu0jcaY18cdKRv1vjbVoMTBzw1ktZF7OHg" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -14,6 +13,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Hero image preload for faster first paint -->
+  <link rel="preload" as="image" fetchpriority="high"
+        href="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1920&auto=format&fit=crop">
 
   <script>document.documentElement.classList.add("js");</script>
 
@@ -424,7 +427,7 @@
         linear-gradient(to bottom, rgba(4, 7, 14, 0.62) 0%, rgba(4, 7, 14, 0.25) 30%, rgba(7, 12, 22, 0.9) 100%),
         linear-gradient(100deg, rgba(4, 7, 14, 0.94) 0%, rgba(7, 12, 22, 0.86) 42%, rgba(7, 12, 22, 0.55) 68%, rgba(4, 7, 14, 0.72) 100%),
         radial-gradient(ellipse 60% 50% at 78% 30%, rgba(198, 161, 91, 0.08), transparent 60%),
-        url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2400&auto=format&fit=crop") center 32% / cover no-repeat,
+        url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1920&auto=format&fit=crop") center 32% / cover no-repeat,
         linear-gradient(170deg, var(--black) 0%, var(--midnight) 60%, #081020 100%);
       overflow: hidden;
     }
@@ -1260,6 +1263,185 @@
       #heroCanvas { display: none; }
       .preloader { display: none; }
     }
+
+    /* ================= RESPONSIVE UPGRADE ================= */
+
+    /* Guard against any sideways scrolling */
+    html, body { max-width: 100%; overflow-x: hidden; }
+
+    /* --- Switch to the mobile menu earlier (≤1200px) so the header never crowds --- */
+    @media (max-width: 1200px) {
+      .menu-toggle { display: inline-flex; margin-left: auto; }
+      .header-divider { display: none; }
+      .auth-btn .auth-label-long { display: none; }
+      .auth-btn { padding: 11px 14px; }
+      .auth-name { max-width: 110px; }
+
+      .primary-nav {
+        position: fixed;
+        top: calc(var(--header-h) + 10px);
+        right: var(--gutter); left: var(--gutter);
+        display: grid; gap: 2px;
+        padding: 16px;
+        margin-left: 0;
+        background: rgba(4, 7, 14, 0.98);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+        visibility: hidden; opacity: 0;
+        transform: translateY(-14px);
+        transition: visibility 0.3s ease, opacity 0.3s ease, transform 0.4s var(--ease);
+        -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+      }
+      .primary-nav.is-open { visibility: visible; opacity: 1; transform: translateY(0); }
+      .primary-nav a:not(.nav-cta) { padding: 16px 14px; font-size: 0.78rem; letter-spacing: 0.2em; }
+      .primary-nav a:not(.nav-cta):hover,
+      .primary-nav a[aria-current="true"]:not(.nav-cta) { background: rgba(198, 161, 91, 0.07); }
+      .nav-cta { margin: 10px 0 0; justify-content: center; padding: 16px; }
+    }
+
+    /* --- Hero stacks sooner so the two columns never squeeze --- */
+    @media (max-width: 1200px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 70px;
+        padding-top: calc(var(--header-h) + 60px);
+        padding-bottom: 180px;
+      }
+      .hero-copy { max-width: 640px; }
+      .hero-plate { justify-self: center; max-width: min(440px, 100%); }
+      .scroll-hint { display: none; }
+    }
+
+    /* --- Tablets (941–1200px): 2-column cards instead of cramped 3 or single --- */
+    @media (max-width: 1200px) and (min-width: 941px) {
+      .services-grid, .case-grid { grid-template-columns: repeat(2, 1fr); }
+      .service-card, .case-card { min-height: 0; }
+    }
+
+    /* --- Small phones (≤420px): final polish --- */
+    @media (max-width: 420px) {
+      :root { --gutter: 16px; }
+      .brand-logo { height: 30px; }
+      .site-header.is-scrolled .brand-logo { height: 27px; }
+      .auth-btn { min-height: 40px; padding: 10px 12px; }
+      .auth-signout { padding: 7px 10px; }
+      .hero-title { font-size: clamp(2.5rem, 13vw, 3.4rem); }
+      .display { font-size: clamp(2.2rem, 10.5vw, 3rem); }
+      .ticker-group span { gap: 14px; padding-inline: 14px; }
+      .contact-phone { font-size: clamp(1.7rem, 9vw, 2.3rem); }
+      .case-chips span { font-size: 0.64rem; padding: 7px 10px; }
+    }
+
+    /* ================= UI/UX POLISH ================= */
+
+    /* 1. Accessibility: lift secondary text above WCAG AA contrast */
+    :root {
+      --ivory-soft: rgba(245, 240, 228, 0.74);
+      --ivory-faint: rgba(245, 240, 228, 0.56);
+    }
+
+    /* 2. Prevent iOS landscape text inflation */
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+    /* 3. Eliminate orphan words at paragraph ends (progressive enhancement) */
+    p { text-wrap: pretty; }
+
+    /* 4. Tactile pressed feedback on every interactive control */
+    .btn:active,
+    .nav-cta:active,
+    .auth-btn:active,
+    .auth-signout:active,
+    .menu-toggle:active {
+      transform: translateY(1px) scale(0.99);
+      transition-duration: 0.08s;
+    }
+
+    /* 5. Keep faint labels (kickers, footnotes) readable on hover-capable screens */
+    .case-domain, .cases-note, .hero-footnote { color: rgba(245, 240, 228, 0.6); }
+
+    /* ================= CONTACT FORM ================= */
+
+    .contact-form { margin-top: 44px; max-width: 560px; }
+
+    .form-field { margin-bottom: 22px; }
+
+    .form-label {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--gold-bright);
+      font-size: 0.64rem; font-weight: 600;
+      letter-spacing: 0.26em; text-transform: uppercase;
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 15px 18px;
+      background: rgba(4, 7, 14, 0.55);
+      border: 1px solid rgba(245, 240, 228, 0.18);
+      color: var(--ivory);
+      font-family: var(--sans);
+      font-size: 0.95rem; font-weight: 300;
+      letter-spacing: 0.02em;
+      transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .form-textarea { min-height: 140px; resize: vertical; }
+
+    .form-input::placeholder, .form-textarea::placeholder {
+      color: rgba(245, 240, 228, 0.35);
+    }
+
+    .form-input:hover, .form-textarea:hover {
+      border-color: rgba(236, 210, 154, 0.35);
+    }
+    .form-input:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--gold-bright);
+      background: rgba(4, 7, 14, 0.75);
+      box-shadow: 0 0 0 1px var(--gold-bright), 0 10px 30px rgba(198, 161, 91, 0.1);
+    }
+
+    .form-input[aria-invalid="true"], .form-textarea[aria-invalid="true"] {
+      border-color: #d4766a;
+    }
+
+    .form-error {
+      display: none;
+      margin-top: 8px;
+      color: #e8a79d;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+    }
+    .form-error.is-visible { display: block; }
+
+    .form-status {
+      display: none;
+      margin-top: 20px;
+      padding: 15px 18px;
+      font-size: 0.86rem;
+      letter-spacing: 0.04em;
+      border: 1px solid;
+    }
+    .form-status.is-visible { display: block; }
+    .form-status.is-success {
+      color: var(--gold-bright);
+      border-color: rgba(236, 210, 154, 0.4);
+      background: rgba(198, 161, 91, 0.08);
+    }
+    .form-status.is-error {
+      color: #e8a79d;
+      border-color: rgba(212, 118, 106, 0.4);
+      background: rgba(212, 118, 106, 0.08);
+    }
+
+    .contact-form .btn { margin-top: 6px; }
+    .contact-form .btn[disabled] { opacity: 0.6; cursor: wait; }
+
+    @media (max-width: 940px) {
+      .contact-form { max-width: 640px; }
+    }
+    @media (max-width: 620px) {
+      .contact-form .btn { width: 100%; }
+    }
   </style>
 
   <script type="application/ld+json">
@@ -1769,6 +1951,45 @@
             <p>
               Whether the priority is sourcing, process performance, supply chain, or technology, a productive first conversation begins with the business decision you need to make.
             </p>
+
+            <form class="contact-form" id="contactForm" novalidate
+                  action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+              <!-- ⬆️ PLACEHOLDER: replace YOUR_FORM_ID with your real Formspree form ID -->
+
+              <div class="form-field">
+                <label class="form-label" for="cfName">Name</label>
+                <input class="form-input" id="cfName" name="name" type="text"
+                       autocomplete="name" placeholder="Your full name"
+                       required aria-describedby="cfNameErr">
+                <p class="form-error" id="cfNameErr" role="alert">Please enter your name.</p>
+              </div>
+
+              <div class="form-field">
+                <label class="form-label" for="cfEmail">Email</label>
+                <input class="form-input" id="cfEmail" name="email" type="email"
+                       autocomplete="email" placeholder="you@company.com"
+                       required aria-describedby="cfEmailErr">
+                <p class="form-error" id="cfEmailErr" role="alert">Please enter a valid email address.</p>
+              </div>
+
+              <div class="form-field">
+                <label class="form-label" for="cfMessage">Message</label>
+                <textarea class="form-textarea" id="cfMessage" name="message"
+                          placeholder="Briefly describe the decision or challenge…"
+                          required aria-describedby="cfMessageErr"></textarea>
+                <p class="form-error" id="cfMessageErr" role="alert">Please enter a message (at least 10 characters).</p>
+              </div>
+
+              <button class="btn btn-gold" type="submit" id="cfSubmit">
+                <span class="btn-sheen" aria-hidden="true"></span>
+                Send Message
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M4 10h11M11 6l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+
+              <p class="form-status" id="cfStatus" role="status" aria-live="polite"></p>
+            </form>
           </div>
 
           <aside class="contact-panel reveal" data-delay="1" aria-label="Contact details">
@@ -1879,7 +2100,7 @@
         if (menuButton.getAttribute("aria-expanded") === "true" &&
             !navigation.contains(e.target) && !menuButton.contains(e.target)) closeMenu();
       });
-      window.addEventListener("resize", () => { if (window.innerWidth > 940) closeMenu(); });
+      window.addEventListener("resize", () => { if (window.innerWidth > 1200) closeMenu(); });
 
       /* ---------- Reveal on scroll ---------- */
       if (reduceMotion || !("IntersectionObserver" in window)) {
@@ -2030,6 +2251,83 @@
     })();
   </script>
 
+  <!-- ===== CONTACT FORM VALIDATION & SUBMISSION ===== -->
+  <script>
+    (() => {
+      "use strict";
+      const form = document.getElementById("contactForm");
+      if (!form) return;
+
+      const fields = [
+        { el: document.getElementById("cfName"),    err: document.getElementById("cfNameErr"),
+          valid: (v) => v.trim().length >= 2 },
+        { el: document.getElementById("cfEmail"),   err: document.getElementById("cfEmailErr"),
+          valid: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) },
+        { el: document.getElementById("cfMessage"), err: document.getElementById("cfMessageErr"),
+          valid: (v) => v.trim().length >= 10 }
+      ];
+      const submitBtn = document.getElementById("cfSubmit");
+      const status = document.getElementById("cfStatus");
+
+      const setFieldState = (f, ok) => {
+        f.el.setAttribute("aria-invalid", ok ? "false" : "true");
+        f.err.classList.toggle("is-visible", !ok);
+      };
+
+      fields.forEach((f) => {
+        f.el.addEventListener("blur", () => setFieldState(f, f.valid(f.el.value)));
+        f.el.addEventListener("input", () => {
+          if (f.err.classList.contains("is-visible") && f.valid(f.el.value)) setFieldState(f, true);
+        });
+      });
+
+      const showStatus = (msg, isSuccess) => {
+        status.textContent = msg;
+        status.classList.add("is-visible");
+        status.classList.toggle("is-success", isSuccess);
+        status.classList.toggle("is-error", !isSuccess);
+      };
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        status.classList.remove("is-visible");
+
+        let firstInvalid = null;
+        fields.forEach((f) => {
+          const ok = f.valid(f.el.value);
+          setFieldState(f, ok);
+          if (!ok && !firstInvalid) firstInvalid = f.el;
+        });
+        if (firstInvalid) { firstInvalid.focus(); return; }
+
+        if (form.action.includes("YOUR_FORM_ID")) {
+          showStatus("The form is not yet connected. Please call us at 216.401.5004 while we complete setup.", false);
+          return;
+        }
+
+        submitBtn.disabled = true;
+        try {
+          const res = await fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+            headers: { "Accept": "application/json" }
+          });
+          if (res.ok) {
+            form.reset();
+            fields.forEach((f) => f.el.setAttribute("aria-invalid", "false"));
+            showStatus("Thank you — your message has been sent. We will respond shortly.", true);
+          } else {
+            showStatus("Something went wrong sending your message. Please try again, or call 216.401.5004.", false);
+          }
+        } catch {
+          showStatus("Network error. Please check your connection and try again, or call 216.401.5004.", false);
+        } finally {
+          submitBtn.disabled = false;
+        }
+      });
+    })();
+  </script>
+
   <!-- ===== FIREBASE GOOGLE AUTHENTICATION ===== -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -2037,16 +2335,18 @@
       getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut
     } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-    /* ⬇️ Replace with your existing Firebase project config values */
+    /* ================================================================
+       ⬇️ SIX PLACEHOLDERS — replace with your real Firebase config:
+       Firebase console → ⚙️ Project settings → Your apps → Config
+       ================================================================ */
     const firebaseConfig = {
-  apiKey: "AIzaSyAQ1VJluQYYGl5DMnUvRKyp4vmz7p73YVg",
-  authDomain: "value-based-solutions.firebaseapp.com",
-  projectId: "value-based-solutions",
-  storageBucket: "value-based-solutions.firebasestorage.app",
-  messagingSenderId: "776831076405",
-  appId: "1:776831076405:web:b6f002e99e6946ea07497c",
-  measurementId: "G-H9FH4W2MHX"
-};
+      apiKey: "YOUR_API_KEY",                                 /* 1 */
+      authDomain: "YOUR_PROJECT.firebaseapp.com",             /* 2 */
+      projectId: "YOUR_PROJECT_ID",                           /* 3 */
+      storageBucket: "YOUR_PROJECT.appspot.com",              /* 4 */
+      messagingSenderId: "YOUR_SENDER_ID",                    /* 5 */
+      appId: "YOUR_APP_ID"                                    /* 6 */
+    };
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
