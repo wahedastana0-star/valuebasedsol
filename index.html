@@ -82,9 +82,19 @@
     .skip-link:focus { transform: translateY(0); }
 
     .container {
-      width: min(calc(100% - (var(--gutter) * 2)), var(--container));
-      margin-inline: auto;
-    }
+  width: min(calc(100% - 128px), var(--container));
+  max-width: var(--container);
+  margin-left: 64px;
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: calc(100% - 40px);
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
 
     /* ================= PRELOADER ================= */
 
