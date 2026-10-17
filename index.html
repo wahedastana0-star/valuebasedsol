@@ -37,7 +37,7 @@
       --serif: "Cormorant Garamond", Georgia, serif;
       --sans: "Jost", "Segoe UI", Helvetica, Arial, sans-serif;
       --container: 1260px;
-      --gutter: clamp(24px, 3vw + 12px, 170px);
+      --gutter: clamp(40px, 4vw, 56px);
       --header-h: 92px;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -438,19 +438,6 @@
       opacity: 0.8;
       pointer-events: none;
     }
-
-    .hero-frame {
-      position: absolute; inset: clamp(16px, 2.4vw, 32px); z-index: 4;
-      pointer-events: none;
-      border: 1px solid rgba(236, 210, 154, 0.1);
-    }
-    .hero-frame::before, .hero-frame::after {
-      content: ""; position: absolute;
-      width: 48px; height: 48px;
-      border-color: rgba(236, 210, 154, 0.55); border-style: solid;
-    }
-    .hero-frame::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
-    .hero-frame::after { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
 
     .hero-inner {
       position: relative; z-index: 3;
@@ -1125,7 +1112,7 @@
     /* ================= RESPONSIVE ================= */
 
     @media (max-width: 1160px) {
-      :root { --gutter: clamp(28px, 5vw, 70px); }
+      :root { --gutter: clamp(28px, 4vw, 36px); }
 
       .primary-nav a:not(.nav-cta) { padding: 12px 10px; font-size: 0.67rem; letter-spacing: 0.14em; }
       .nav-cta { margin-left: 8px; padding: 12px 16px; }
@@ -1142,7 +1129,7 @@
     @media (max-width: 940px) {
       :root {
         --header-h: 78px;
-        --gutter: clamp(24px, 5vw, 48px);
+        --gutter: clamp(24px, 4vw, 32px);
       }
 
       .menu-toggle { display: inline-flex; margin-left: auto; }
@@ -1205,7 +1192,7 @@
     }
 
     @media (max-width: 620px) {
-      :root { --gutter: clamp(20px, 6vw, 32px); }
+      :root { --gutter: clamp(20px, 5vw, 24px); }
 
       .section { padding: 88px 0; }
 
@@ -1214,9 +1201,6 @@
       .site-header.is-scrolled .brand-logo { height: 30px; }
 
       .auth-signout { padding: 8px 11px; font-size: 0.52rem; }
-
-      .hero-frame { inset: 10px; }
-      .hero-frame::before, .hero-frame::after { width: 30px; height: 30px; }
 
       .hero-title { font-size: clamp(2.9rem, 13.5vw, 4.1rem); }
       .hero-actions { display: grid; grid-template-columns: 1fr; width: 100%; }
@@ -1320,7 +1304,7 @@
 
     /* --- Small phones (≤420px): final polish --- */
     @media (max-width: 420px) {
-      :root { --gutter: 16px; }
+      :root { --gutter: 20px; }
       .brand-logo { height: 30px; }
       .site-header.is-scrolled .brand-logo { height: 27px; }
       .auth-btn { min-height: 40px; padding: 10px 12px; }
@@ -1527,7 +1511,6 @@
     <!-- ===== HERO ===== -->
     <section class="hero" id="home" aria-labelledby="hero-title">
       <canvas id="heroCanvas" aria-hidden="true"></canvas>
-      <div class="hero-frame" aria-hidden="true"></div>
 
       <div class="container hero-inner">
 
