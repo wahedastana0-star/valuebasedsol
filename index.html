@@ -1438,6 +1438,21 @@
       .contact-form .btn { width: 100%; }
     }
   </style>
+  /* Fix spacing on desktop and mobile */
+.container {
+  width: calc(100% - 64px) !important;
+  max-width: 1260px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: calc(100% - 32px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
 
   <script type="application/ld+json">
     {
