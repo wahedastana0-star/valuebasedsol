@@ -14,7 +14,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Hero image preload for faster first paint -->
   <link rel="preload" as="image" fetchpriority="high"
         href="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1920&auto=format&fit=crop">
 
@@ -1438,6 +1437,22 @@
     .form-input, .form-textarea, .form-status { border-radius: 8px; }
     .btn { border-radius: 8px; }
     .case-tag, .case-chips span { border-radius: 6px; }
+
+    /* ===== CONTACT BUTTON REFINEMENT — smaller Send Message & Call buttons ===== */
+
+    .contact-form .btn,
+    .contact-panel .btn {
+      min-height: 48px;
+      padding: 13px 26px;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+    }
+
+    .contact-form .btn svg,
+    .contact-panel .btn svg {
+      width: 13px;
+      height: 13px;
+    }
   </style>
 
   <script type="application/ld+json">
@@ -1937,7 +1952,7 @@
               Whether the priority is sourcing, process performance, supply chain, or technology, a productive first conversation begins with the business decision you need to make.
             </p>
 
-            <!-- ⬇️ PLACEHOLDER: keep YOUR existing real Formspree form ID in the action URL -->
+            <!-- ⬇️ KEEP YOUR REAL FORMSPREE ID in the action URL below -->
             <form class="contact-form" id="contactForm" novalidate
                   action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
 
@@ -2308,10 +2323,7 @@
       getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut
     } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-    /* ================================================================
-       ⬇️ PLACEHOLDERS: keep YOUR existing real Firebase config values
-       (Firebase console → Project settings → Your apps → Config)
-       ================================================================ */
+    /* ⬇️ KEEP YOUR REAL FIREBASE CONFIG VALUES here — do not deploy placeholders */
     const firebaseConfig = {
       apiKey: "YOUR_API_KEY",
       authDomain: "YOUR_PROJECT.firebaseapp.com",
