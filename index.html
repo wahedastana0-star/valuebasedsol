@@ -326,29 +326,31 @@
     .menu-toggle[aria-expanded="true"] .menu-toggle-lines span:first-child { top: 6px; transform: rotate(45deg); }
     .menu-toggle[aria-expanded="true"] .menu-toggle-lines span:last-child { top: 6px; transform: rotate(-45deg); }
 
-    .header-divider {
-      width: 1px;
-      height: 26px;
-      flex: 0 0 auto;
-      background: linear-gradient(to bottom, transparent, rgba(236, 210, 154, 0.35), transparent);
-    }
-
-    /* ================= GOOGLE AUTH UI ================= */
+    /* ================= GOOGLE AUTH (account section at bottom) ================= */
 
     [hidden] { display: none !important; }
 
     .auth-box {
-      display: flex;
-      align-items: center;
-      flex: 0 0 auto;
+      margin-top: 32px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+    }
+
+    .auth-box-label {
+      display: block;
+      margin-bottom: 14px;
+      color: var(--gold-bright);
+      font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.34em; text-transform: uppercase;
     }
 
     .auth-btn {
-      display: inline-flex; align-items: center; gap: 11px;
-      min-height: 44px; padding: 11px 20px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 11px;
+      width: 100%;
+      min-height: 44px; padding: 12px 20px;
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(236, 210, 154, 0.3);
-      border-radius: 999px;
+      border-radius: 8px;
       color: var(--ivory);
       font-family: var(--sans);
       font-size: 0.66rem; font-weight: 600;
@@ -366,13 +368,13 @@
     .auth-btn svg { width: 15px; height: 15px; flex: 0 0 auto; }
 
     .auth-user {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       gap: 12px;
-      padding: 5px 6px 5px 5px;
+      padding: 9px 10px 9px 9px;
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(236, 210, 154, 0.22);
-      border-radius: 999px;
+      border-radius: 8px;
     }
 
     .auth-avatar {
@@ -385,7 +387,8 @@
     .auth-avatar.has-photo { display: block; }
 
     .auth-name {
-      max-width: 130px;
+      flex: 1;
+      min-width: 0;
       overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
       color: var(--gold-bright);
       font-size: 0.68rem; font-weight: 600;
@@ -393,11 +396,12 @@
     }
 
     .auth-signout {
+      flex: 0 0 auto;
       display: inline-flex; align-items: center;
       min-height: 32px; padding: 8px 14px;
       background: transparent;
       border: 1px solid rgba(245, 240, 228, 0.22);
-      border-radius: 999px;
+      border-radius: 8px;
       color: var(--ivory-faint);
       font-family: var(--sans);
       font-size: 0.56rem; font-weight: 600;
@@ -1124,12 +1128,6 @@
 
       .menu-toggle { display: inline-flex; margin-left: auto; }
 
-      .header-divider { display: none; }
-      .auth-btn .auth-label-long { display: none; }
-      .auth-btn { padding: 11px 14px; }
-      .auth-name { display: none; }
-      .auth-user { gap: 8px; }
-
       .primary-nav {
         position: fixed;
         top: calc(var(--header-h) + 10px);
@@ -1188,8 +1186,6 @@
       .brand-logo { height: 34px; }
       .site-header.is-scrolled .brand-logo { height: 30px; }
 
-      .auth-signout { padding: 8px 11px; font-size: 0.52rem; }
-
       .hero-title { font-size: clamp(2.9rem, 13.5vw, 4.1rem); }
       .hero-actions { display: grid; grid-template-columns: 1fr; width: 100%; }
       .btn { width: 100%; }
@@ -1242,10 +1238,6 @@
 
     @media (max-width: 1200px) {
       .menu-toggle { display: inline-flex; margin-left: auto; }
-      .header-divider { display: none; }
-      .auth-btn .auth-label-long { display: none; }
-      .auth-btn { padding: 11px 14px; }
-      .auth-name { max-width: 110px; }
 
       .primary-nav {
         position: fixed;
@@ -1289,8 +1281,6 @@
     @media (max-width: 420px) {
       .brand-logo { height: 30px; }
       .site-header.is-scrolled .brand-logo { height: 27px; }
-      .auth-btn { min-height: 40px; padding: 10px 12px; }
-      .auth-signout { padding: 7px 10px; }
       .hero-title { font-size: clamp(2.5rem, 13vw, 3.4rem); }
       .display { font-size: clamp(2.2rem, 10.5vw, 3rem); }
       .ticker-group span { gap: 14px; padding-inline: 14px; }
@@ -1512,21 +1502,6 @@
         <a href="#case-studies">Case Studies</a>
         <a class="nav-cta" href="#contact">Start a Conversation</a>
       </nav>
-
-      <span class="header-divider" aria-hidden="true"></span>
-
-      <div class="auth-box">
-        <button class="auth-btn" id="authSignIn" type="button" hidden>
-          <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.5l6.7-6.7C35.6 2.4 30.2 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.8 6.1C12.3 13.2 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4.1 7.1-10.1 7.1-17.5z"/><path fill="#FBBC05" d="M10.4 28.7a14.5 14.5 0 0 1 0-9.4l-7.8-6.1a24 24 0 0 0 0 21.6l7.8-6.1z"/><path fill="#34A853" d="M24 48c6.2 0 11.4-2 15.4-5.5l-7.5-5.8c-2.1 1.4-4.8 2.3-7.9 2.3-6.3 0-11.7-3.7-13.6-9l-7.8 6.1C6.5 42.6 14.6 48 24 48z"/></svg>
-          <span>Sign in<span class="auth-label-long"> with Google</span></span>
-        </button>
-
-        <div class="auth-user" id="authUser" hidden>
-          <img class="auth-avatar" id="authAvatar" alt="" referrerpolicy="no-referrer">
-          <span class="auth-name" id="authName"></span>
-          <button class="auth-signout" id="authSignOut" type="button">Sign out</button>
-        </div>
-      </div>
 
       <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-navigation">
         <span class="menu-toggle-lines" aria-hidden="true"><span></span><span></span></span>
@@ -1996,7 +1971,7 @@
             </form>
           </div>
 
-          <aside class="contact-panel reveal" data-delay="1" aria-label="Contact details">
+          <aside class="contact-panel reveal" data-delay="1" aria-label="Contact details and account">
             <span class="contact-panel-label">Speak With Our Team</span>
 
             <a class="contact-phone" href="tel:+12164015004" aria-label="Call Value Based Solutions at 216 401 5004">216.401.5004</a>
@@ -2022,6 +1997,21 @@
               <li>Identify the business outcome at stake</li>
               <li>Discuss the right next step</li>
             </ul>
+
+            <div class="auth-box">
+              <span class="auth-box-label">Account</span>
+
+              <button class="auth-btn" id="authSignIn" type="button" hidden>
+                <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.5l6.7-6.7C35.6 2.4 30.2 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.8 6.1C12.3 13.2 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4.1 7.1-10.1 7.1-17.5z"/><path fill="#FBBC05" d="M10.4 28.7a14.5 14.5 0 0 1 0-9.4l-7.8-6.1a24 24 0 0 0 0 21.6l7.8-6.1z"/><path fill="#34A853" d="M24 48c6.2 0 11.4-2 15.4-5.5l-7.5-5.8c-2.1 1.4-4.8 2.3-7.9 2.3-6.3 0-11.7-3.7-13.6-9l-7.8 6.1C6.5 42.6 14.6 48 24 48z"/></svg>
+                <span>Sign in with Google</span>
+              </button>
+
+              <div class="auth-user" id="authUser" hidden>
+                <img class="auth-avatar" id="authAvatar" alt="" referrerpolicy="no-referrer">
+                <span class="auth-name" id="authName"></span>
+                <button class="auth-signout" id="authSignOut" type="button">Sign out</button>
+              </div>
+            </div>
           </aside>
         </div>
       </div>
