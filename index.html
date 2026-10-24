@@ -12,7 +12,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
 
   <link rel="preload" as="image" fetchpriority="high"
         href="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1920&auto=format&fit=crop">
@@ -33,8 +33,8 @@
       --gold-grad: linear-gradient(115deg, #9a7a3c, #ecd29a 40%, #c6a15b 60%, #f6e7bd);
       --line: rgba(236, 210, 154, 0.14);
       --line-soft: rgba(245, 240, 228, 0.07);
-      --serif: "Cormorant Garamond", Georgia, serif;
-      --sans: "Jost", "Segoe UI", Helvetica, Arial, sans-serif;
+      --serif: "Inter", "Segoe UI", Arial, sans-serif;
+      --sans: "Inter", "Segoe UI", Arial, sans-serif;
       --container: 1260px;
       --gutter: clamp(40px, 4vw, 56px);
       --header-h: 92px;
@@ -1447,6 +1447,27 @@
       width: 12px;
       height: 12px;
     }
+
+    /* ===== INTER TYPOGRAPHY — weights & display tuning ===== */
+
+    body { font-weight: 400; }
+
+    .primary-nav a:not(.nav-cta),
+    .nav-cta, .btn, .auth-btn, .auth-signout { font-weight: 500; }
+
+    .pillar h3, .service-card h3, .case-body h3, .approach-step h3,
+    .form-label, .contact-panel-label, .auth-box-label,
+    .kicker, .case-focus > span { font-weight: 600; }
+
+    .hero-title, .display, .contact-phone,
+    .about-quote blockquote { font-weight: 700; }
+
+    .hero-title, .display { letter-spacing: -0.025em; }
+    .hero-title { line-height: 1.04; }
+    .display { line-height: 1.08; }
+    .about-quote blockquote { line-height: 1.2; }
+
+    .tenet strong, .step-no, .pillar-num, .tenet span, .service-index { font-weight: 500; }
   </style>
 
   <script type="application/ld+json">
