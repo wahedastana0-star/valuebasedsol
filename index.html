@@ -8,7 +8,7 @@
   <meta name="description" content="Value Based Solutions helps organizations improve business performance through strategic sourcing, process optimization, supply chain management, and technology consulting.">
   <meta name="theme-color" content="#04070e">
   <link rel="canonical" href="https://www.value-based-solutions.com/">
-  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="icon" type="image/png" href="logo.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -267,16 +267,11 @@
     .brand {
       flex: 0 0 auto;
       display: inline-flex; align-items: center;
-      padding: 8px 15px;
-      background: var(--ivory);
-      border: 1px solid rgba(198, 161, 91, 0.55);
-      border-radius: 10px;
-      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5);
-      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+      transition: transform 0.4s var(--ease), opacity 0.3s ease;
     }
-    .brand:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(198, 161, 91, 0.28); }
-    .brand-logo { height: 46px; width: auto; transition: height 0.4s var(--ease); }
-    .site-header.is-scrolled .brand-logo { height: 37px; }
+    .brand:hover { transform: translateY(-2px); opacity: 0.9; }
+    .brand-logo { height: 52px; width: auto; transition: height 0.4s var(--ease); }
+    .site-header.is-scrolled .brand-logo { height: 42px; }
 
     .primary-nav { display: flex; align-items: center; gap: 4px; margin-left: auto; }
 
@@ -1120,7 +1115,7 @@
     @media (max-width: 1160px) {
       .primary-nav a:not(.nav-cta) { padding: 12px 10px; font-size: 0.67rem; letter-spacing: 0.14em; }
       .nav-cta { margin-left: 8px; padding: 12px 16px; }
-      .brand-logo { height: 40px; }
+      .brand-logo { height: 46px; }
 
       .hero-inner { grid-template-columns: minmax(0, 1fr) minmax(340px, 0.82fr); gap: 50px; }
       .hero-plate { max-width: 400px; }
@@ -1189,9 +1184,8 @@
     @media (max-width: 620px) {
       .section { padding: 88px 0; }
 
-      .brand { padding: 6px 11px; }
-      .brand-logo { height: 34px; }
-      .site-header.is-scrolled .brand-logo { height: 30px; }
+      .brand-logo { height: 38px; }
+      .site-header.is-scrolled .brand-logo { height: 34px; }
 
       .hero-title { font-size: clamp(2.9rem, 13.5vw, 4.1rem); }
       .hero-actions { display: grid; grid-template-columns: 1fr; width: 100%; }
@@ -1286,8 +1280,8 @@
     }
 
     @media (max-width: 420px) {
-      .brand-logo { height: 30px; }
-      .site-header.is-scrolled .brand-logo { height: 27px; }
+      .brand-logo { height: 34px; }
+      .site-header.is-scrolled .brand-logo { height: 30px; }
       .hero-title { font-size: clamp(2.5rem, 13vw, 3.4rem); }
       .display { font-size: clamp(2.2rem, 10.5vw, 3rem); }
       .ticker-group span { gap: 14px; padding-inline: 14px; }
@@ -1475,6 +1469,132 @@
     .about-quote blockquote { line-height: 1.2; }
 
     .tenet strong, .step-no, .pillar-num, .tenet span, .service-index { font-weight: 500; }
+
+    /* ===== NEW SECTIONS — Why Choose Us, How We Work, FAQ ===== */
+
+    .why { background: var(--midnight); }
+
+    .why-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: clamp(18px, 2.4vw, 30px);
+    }
+
+    .why-card {
+      padding: clamp(28px, 3vw, 40px);
+      background: linear-gradient(170deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.012));
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      transition: transform 0.5s var(--ease), border-color 0.4s ease, box-shadow 0.5s var(--ease);
+    }
+    .why-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(198, 161, 91, 0.32);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    }
+    .why-num {
+      display: block; margin-bottom: 16px;
+      color: var(--gold);
+      font-size: 0.66rem; font-weight: 600;
+      letter-spacing: 0.3em; text-transform: uppercase;
+    }
+    .why-card h3 { margin: 0 0 12px; font-size: 1.3rem; font-weight: 600; color: var(--ivory); }
+    .why-card p { margin: 0; color: var(--ivory-faint); font-size: 0.93rem; line-height: 1.8; }
+
+    .hww { background: linear-gradient(180deg, var(--midnight), var(--midnight-2)); }
+
+    .hww-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: clamp(18px, 2.4vw, 30px);
+    }
+
+    .hww-step {
+      position: relative;
+      padding: clamp(26px, 2.6vw, 36px);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      transition: border-color 0.4s ease, transform 0.5s var(--ease);
+    }
+    .hww-step:hover { border-color: rgba(198, 161, 91, 0.32); transform: translateY(-6px); }
+
+    .hww-no {
+      display: grid; place-items: center;
+      width: 40px; height: 40px; margin-bottom: 18px;
+      color: var(--gold-bright);
+      border: 1px solid rgba(198, 161, 91, 0.4);
+      border-radius: 8px;
+      font-size: 0.8rem; font-weight: 600;
+      background: radial-gradient(circle at 32% 28%, rgba(236, 210, 154, 0.12), transparent 65%);
+    }
+    .hww-step h3 { margin: 0 0 10px; font-size: 1.12rem; font-weight: 600; color: var(--ivory); }
+    .hww-step p { margin: 0; color: var(--ivory-faint); font-size: 0.88rem; line-height: 1.75; }
+
+    .hww-step:not(:last-child)::after {
+      content: ""; position: absolute;
+      top: calc(clamp(26px, 2.6vw, 36px) + 20px); left: 100%;
+      width: clamp(18px, 2.4vw, 30px); height: 1px;
+      background: linear-gradient(90deg, rgba(198, 161, 91, 0.45), rgba(198, 161, 91, 0.12));
+    }
+
+    .faq { background: var(--midnight); }
+
+    .faq-list {
+      max-width: 820px; margin-inline: auto;
+      display: grid; gap: 12px;
+    }
+
+    .faq-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color 0.35s ease;
+    }
+    .faq-item.is-open { border-color: rgba(198, 161, 91, 0.35); }
+
+    .faq-q {
+      width: 100%;
+      display: flex; align-items: center; justify-content: space-between; gap: 18px;
+      padding: 20px 22px;
+      background: none; border: 0;
+      color: var(--ivory); text-align: left;
+      font-family: var(--sans); font-size: 0.98rem; font-weight: 600;
+      line-height: 1.5;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    .faq-q:hover { color: var(--gold-bright); }
+
+    .faq-icon {
+      flex: 0 0 auto; width: 18px; height: 18px;
+      color: var(--gold);
+      transition: transform 0.35s var(--ease);
+    }
+    .faq-item.is-open .faq-icon { transform: rotate(45deg); }
+
+    .faq-a {
+      display: grid; grid-template-rows: 0fr;
+      transition: grid-template-rows 0.4s var(--ease);
+    }
+    .faq-item.is-open .faq-a { grid-template-rows: 1fr; }
+    .faq-a-inner { overflow: hidden; }
+    .faq-a p {
+      margin: 0; padding: 0 22px 22px;
+      color: var(--ivory-faint);
+      font-size: 0.9rem; line-height: 1.8;
+    }
+
+    @media (max-width: 1200px) {
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .hww-grid { grid-template-columns: repeat(2, 1fr); }
+      .hww-step::after { display: none; }
+    }
+    @media (max-width: 940px) {
+      .why-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .hww-grid { grid-template-columns: 1fr; }
+    }
   </style>
 
   <script type="application/ld+json">
@@ -1520,7 +1640,7 @@
   <header class="site-header" id="site-header">
     <div class="container header-inner">
       <a class="brand" href="#home" aria-label="Value Based Solutions home">
-        <img class="brand-logo" src="logo.svg" alt="Value-Based Solutions — Management Consulting" width="640" height="160">
+        <img class="brand-logo" src="logo.png" alt="Value-Based Solutions — Management Consulting">
       </a>
 
       <nav class="primary-nav" id="primary-navigation" aria-label="Primary navigation">
@@ -1810,6 +1930,71 @@
       </div>
     </section>
 
+    <section class="section why" id="why-us" aria-labelledby="why-title">
+      <div class="container">
+        <div class="section-head centered reveal">
+          <p class="kicker kicker-center">Why Choose Value Based Solutions</p>
+          <h2 class="display" id="why-title">Why choose <em>us.</em></h2>
+          <p class="lede" style="margin-inline:auto;">
+            Practical expertise. Clear priorities. Measurable business outcomes.
+          </p>
+        </div>
+
+        <div class="why-grid">
+          <article class="why-card reveal">
+            <span class="why-num">No. 01</span>
+            <h3>Measurable Results</h3>
+            <p>We focus on business outcomes that matter—improving performance, managing costs, and creating measurable value.</p>
+          </article>
+          <article class="why-card reveal" data-delay="1">
+            <span class="why-num">No. 02</span>
+            <h3>Practical Solutions</h3>
+            <p>We turn complex business challenges into clear, actionable solutions designed for real-world execution.</p>
+          </article>
+          <article class="why-card reveal" data-delay="2">
+            <span class="why-num">No. 03</span>
+            <h3>Business-Focused Strategy</h3>
+            <p>We align sourcing, operations, supply chain, and technology decisions with your business priorities.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section hww" id="how-we-work" aria-labelledby="hww-title">
+      <div class="container">
+        <div class="section-head centered reveal">
+          <p class="kicker kicker-center">How We Work</p>
+          <h2 class="display" id="hww-title">How we <em>work.</em></h2>
+          <p class="lede" style="margin-inline:auto;">
+            A clear, structured approach that turns business challenges into meaningful results.
+          </p>
+        </div>
+
+        <div class="hww-grid">
+          <article class="hww-step reveal">
+            <span class="hww-no">1</span>
+            <h3>Discover</h3>
+            <p>Understand your business, priorities, challenges, and desired outcomes.</p>
+          </article>
+          <article class="hww-step reveal" data-delay="1">
+            <span class="hww-no">2</span>
+            <h3>Analyze</h3>
+            <p>Identify opportunities, evaluate current processes, and determine where improvements will create the greatest value.</p>
+          </article>
+          <article class="hww-step reveal" data-delay="2">
+            <span class="hww-no">3</span>
+            <h3>Implement</h3>
+            <p>Develop and execute practical solutions aligned with your business goals.</p>
+          </article>
+          <article class="hww-step reveal" data-delay="3">
+            <span class="hww-no">4</span>
+            <h3>Measure Results</h3>
+            <p>Evaluate outcomes, track progress, and identify opportunities for continued improvement.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section about" id="about" aria-labelledby="about-title">
       <div class="container about-grid">
         <figure class="about-quote reveal">
@@ -1944,6 +2129,60 @@
         <p class="cases-note reveal">
           These briefs illustrate potential engagement scopes. They do not claim specific client outcomes or results.
         </p>
+      </div>
+    </section>
+
+    <section class="section faq" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-head centered reveal">
+          <p class="kicker kicker-center">Frequently Asked Questions</p>
+          <h2 class="display" id="faq-title">Common <em>questions.</em></h2>
+          <p class="lede" style="margin-inline:auto;">
+            Answers to common questions about working with Value Based Solutions.
+          </p>
+        </div>
+
+        <div class="faq-list reveal">
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false" aria-controls="faqA1">
+              What services does Value Based Solutions provide?
+              <svg class="faq-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a" id="faqA1"><div class="faq-a-inner"><p>We help businesses improve strategic sourcing, cost management, processes, supply chain performance, and technology strategy and delivery.</p></div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false" aria-controls="faqA2">
+              What types of business challenges can you help solve?
+              <svg class="faq-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a" id="faqA2"><div class="faq-a-inner"><p>We work with organizations to identify inefficiencies, manage costs, improve operational performance, and align business processes and technology with strategic priorities.</p></div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false" aria-controls="faqA3">
+              How does the engagement process work?
+              <svg class="faq-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a" id="faqA3"><div class="faq-a-inner"><p>We begin with a conversation about your business needs, priorities, and desired outcomes. From there, we discuss potential opportunities and appropriate next steps.</p></div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false" aria-controls="faqA4">
+              How can I get started?
+              <svg class="faq-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a" id="faqA4"><div class="faq-a-inner"><p>Use the Start a Conversation button or contact our team through the contact form to discuss your business needs.</p></div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q" type="button" aria-expanded="false" aria-controls="faqA5">
+              Are solutions tailored to each business?
+              <svg class="faq-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </button>
+            <div class="faq-a" id="faqA5"><div class="faq-a-inner"><p>Yes. Our approach is based on each organization's specific challenges, objectives, and operational needs.</p></div></div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -2335,6 +2574,19 @@
         } finally {
           submitBtn.disabled = false;
         }
+      });
+    })();
+  </script>
+
+  <script>
+    (() => {
+      "use strict";
+      document.querySelectorAll(".faq-q").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.toggle("is-open");
+          btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        });
       });
     })();
   </script>
